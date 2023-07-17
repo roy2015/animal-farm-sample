@@ -15,7 +15,12 @@
 
   <properties>
     <jdk-version>1.8</jdk-version>
-    <springboot.version>2.5.14</springboot.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+
+    <springboot.version>2.0.3.RELEASE</springboot.version>
+    <nacos.version>0.2.1</nacos.version>
   </properties>
 
   <dependencyManagement>
@@ -28,23 +33,23 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <!-- nacos -->
+      <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>nacos-config-spring-boot-starter</artifactId>
+        <version>${nacos.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba.boot</groupId>
+        <artifactId>nacos-config-spring-boot-actuator</artifactId>
+        <version>${nacos.version}</version>
+      </dependency>
+
     </dependencies>
 
+
+
   </dependencyManagement>
-
-
-
-  <distributionManagement>
-    <repository>
-      <id>releases</id>
-      <name>releases</name>
-      <url>http://localhost:8099/repository/maven-releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>snapshots</id>
-      <name>snapshots</name>
-      <url>http://localhost:8099/repository/maven-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
 
 </project>
