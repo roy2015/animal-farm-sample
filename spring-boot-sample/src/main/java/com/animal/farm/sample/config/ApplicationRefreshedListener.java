@@ -1,17 +1,16 @@
-package com.animal.farm.springboot.sample.config;
+package com.animal.farm.sample.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import com.animal.farm.springboot.sample.config.MyAutoConfiguration.Client;
-import com.animal.farm.springboot.sample.vo.MotorEngine;
+import com.animal.farm.sample.config.MyAutoConfiguration.Client;
+import com.animal.farm.sample.vo.MotorEngine;
 
 /**
  * @author guojun

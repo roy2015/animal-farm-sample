@@ -1,4 +1,4 @@
-package com.animal.farm.springboot.sample;
+package com.animal.farm.sample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

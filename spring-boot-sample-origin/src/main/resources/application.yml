@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: spring-boot-sample-origin
+  gdy:
+    roy:
+      name: guoj
+      age : 66
+  # redis
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 5000
+    lettuce:
+      pool:
+        max-idle:  10
+        max-active: 200
+        max-wait: -1ms
+        min-idle: 10
+guo1:
+  name1: 123
+
+
+server:
+  tomcat: #支持的最大连接数为  max-connections + accept-count
+    min-spare-threads: 1 #Minimum number of worker threads
+    max-threads: 10 # Maximum number of worker threads
+    max-connections: 20 # 最大连接数 Maximum number of connections that the server accepts and processes at any given time. Once the limit has been reached, the operating system may still accept connections based on the "acceptCount" property.
+    accept-count: 10 #队列 Maximum queue length for incoming connection requests when all possible request processing threads are in use
+
+  port: 8099

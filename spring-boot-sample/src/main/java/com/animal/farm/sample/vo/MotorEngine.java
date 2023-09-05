@@ -1,4 +1,4 @@
-package com.animal.farm.springboot.sample.vo;
+package com.animal.farm.sample.vo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

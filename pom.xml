@@ -12,6 +12,7 @@
   <modules>
     <module>nacos-spring-boot-config-example</module>
     <module>spring-boot-sample</module>
+    <module>spring-boot-sample-origin</module>
   </modules>
 
   <properties>
@@ -23,6 +24,7 @@
     <springboot.version>2.0.3.RELEASE</springboot.version>
     <nacos.version>0.2.1</nacos.version>
     <lombok.version>1.18.4</lombok.version>
+    <hutool.version>5.3.10</hutool.version>
   </properties>
 
   <dependencyManagement>
@@ -53,6 +55,12 @@
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>${lombok.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>${hutool.version}</version>
       </dependency>
 
     </dependencies>

@@ -1,9 +1,9 @@
-package com.animal.farm.springboot.sample.config;
+package com.animal.farm.sample.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.animal.farm.springboot.sample.config.MyAutoConfiguration.Client;
+import com.animal.farm.sample.config.MyAutoConfiguration.Client;
 
 /**
  * @author guojun
@@ -15,6 +15,8 @@ public class ServiceA {
   @Autowired
   private Client client;
 
-
+  public String sayHello() {
+    return "hello, world";
+  }
 
 }
