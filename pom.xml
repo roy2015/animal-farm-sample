@@ -13,6 +13,7 @@
     <module>nacos-spring-boot-config-example</module>
     <module>spring-boot-sample</module>
     <module>spring-boot-sample-origin</module>
+    <module>spring-gateway-sample</module>
   </modules>
 
   <properties>
@@ -21,7 +22,8 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <springboot.version>2.0.3.RELEASE</springboot.version>
+<!--    <springboot.version>2.0.3.RELEASE</springboot.version>-->
+    <springboot.version>2.5.14</springboot.version>
     <nacos.version>0.2.1</nacos.version>
     <lombok.version>1.18.4</lombok.version>
     <hutool.version>5.3.10</hutool.version>
@@ -61,6 +63,34 @@
         <groupId>cn.hutool</groupId>
         <artifactId>hutool-all</artifactId>
         <version>${hutool.version}</version>
+      </dependency>
+
+
+      <!--Jackson-->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.13.2</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.13.2</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.13.2.2</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-yaml</artifactId>
+        <version>2.13.2</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.dataformat</groupId>
+        <artifactId>jackson-dataformat-properties</artifactId>
+        <version>2.13.2</version>
       </dependency>
 
     </dependencies>

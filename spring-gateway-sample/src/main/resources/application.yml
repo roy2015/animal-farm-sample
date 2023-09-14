@@ -1,0 +1,22 @@
+server:
+  port: 10086
+  tomcat:
+    mbeanregistry:
+      enabled: true
+
+spring:
+  application:
+    name: gateway
+  main:
+    web-application-type: reactive
+
+gateway:
+  default:
+    target-url: http://localhost:8081  #调整目标服务
+    predicate-path: /api-market/*/{id}
+
+swagger:
+  ui:
+    enabled: true
+    title: 内部微服务
+    version: 3.6.0-SNAPSHOT
