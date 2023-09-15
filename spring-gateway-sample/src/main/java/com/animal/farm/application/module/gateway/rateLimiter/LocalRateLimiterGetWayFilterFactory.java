@@ -1,5 +1,6 @@
 package com.animal.farm.application.module.gateway.rateLimiter;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -11,7 +12,17 @@ import org.springframework.cloud.gateway.support.HasRouteId;
 import org.springframework.cloud.gateway.support.HttpStatusHolder;
 import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.web.server.ServerWebExchange;
+
+import com.animal.farm.infrastructure.foundation.util.JsonUtil;
+import com.animal.farm.infrastructure.foundation.web.MessageCode;
+import com.animal.farm.infrastructure.foundation.web.Result;
+
+import reactor.core.publisher.Mono;
 
 /**
  * @author zhouzhiyuan
@@ -87,9 +98,10 @@ public class LocalRateLimiterGetWayFilterFactory extends
     return (exchange, chain) -> resolver.resolve(exchange).defaultIfEmpty(EMPTY_KEY)
         .flatMap(key -> {
           if (EMPTY_KEY.equals(key)) {
+            //空key
             if (denyEmpty) {
               ServerWebExchangeUtils.setResponseStatus(exchange, emptyKeyStatus);
-              return exchange.getResponse().setComplete();
+              return writeResponse(exchange, MessageCode.ERROR_403_403);
             }
             return chain.filter(exchange);
           }
@@ -110,15 +122,36 @@ public class LocalRateLimiterGetWayFilterFactory extends
             if (response.isAllowed()) {
               return chain.filter(exchange);
             }
-
+            //isAllowd=false时，返回429， too may reqests
             ServerWebExchangeUtils.setResponseStatus(exchange, config.getStatusCode());
-            return exchange.getResponse().setComplete();
+//            return exchange.getResponse().setComplete();
+            return writeResponse(exchange, MessageCode.ERROR_429);
+
           });
         });
   }
 
   private <T> T getOrDefault(T configValue, T defaultValue) {
     return (configValue != null) ? configValue : defaultValue;
+  }
+
+  /**
+   * 往response里写json body
+   * @param exchange
+   * @return
+   */
+  public Mono<Void> writeResponse(ServerWebExchange exchange, MessageCode messageCode) {
+    ServerHttpResponse response = exchange.getResponse();
+    // 设置响应的内容类型为JSON
+    response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+    Result<Void> result = Result
+        .error(messageCode.getCode(), messageCode.getMessage());
+    // 写入JSON响应数据
+    return response.writeWith(Mono
+        .just(response
+            .bufferFactory()
+            .wrap(JsonUtil.writeValueAsString(result)
+                .getBytes(StandardCharsets.UTF_8))));
   }
 
   @Override

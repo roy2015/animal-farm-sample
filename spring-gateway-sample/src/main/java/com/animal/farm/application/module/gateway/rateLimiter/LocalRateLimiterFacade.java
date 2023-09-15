@@ -52,6 +52,7 @@ public class LocalRateLimiterFacade {
             Token token = JwtTokenUtil.fromString(tokens.get(0));
             apiPath = apiPath + SEPARATOR + token.getUserId();
           }catch (Exception ignore){
+            return Mono.just("____EMPTY_KEY__");//没有token，返回空key
           }
         }
         return Mono.just(apiPath);

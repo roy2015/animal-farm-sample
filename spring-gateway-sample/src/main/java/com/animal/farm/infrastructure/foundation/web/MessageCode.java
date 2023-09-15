@@ -14,6 +14,8 @@ public enum MessageCode implements ErrorCode {
   ERROR_400(400, "参数有误"),
   ERROR_401(401, "无权操作"),
   ERROR_410(410, "服务间内部调用出错，请联系平台维护人员"),
+  ERROR_403_403(403, "流量接口无权限，请检查token"),
+  ERROR_429(429, "超过流量阈值，当前用户被锁定"),
 
   ERROR_500(500, "系统出现异常，请联系平台维护人员"),
 
