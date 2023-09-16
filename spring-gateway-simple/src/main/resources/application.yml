@@ -1,0 +1,31 @@
+server:
+  port: 10081
+  tomcat:
+    mbeanregistry:
+      enabled: true
+
+spring:
+  application:
+    name: gateway-simple
+  cloud:
+    gateway:
+      routes:
+        - id: market
+          uri: http://localhost:8081
+          predicates:
+            - Path=/gw/api-market/**
+          filters:
+            - name: CustomFilter   #自定义GatewayFilterFactory名称,写法1
+              args:
+                var1: 1
+                var2: 2
+                var3: 2
+            - StripPrefix=1  #对应StripPrefixGatewayFilterFactory
+
+        - id: au
+          uri: http://localhost:8099
+          predicates:
+            - Path=/gw/api/doNoting
+          filters:
+            - CustomFilter=xxx   #自定义GatewayFilterFactory名称，写法二
+            - StripPrefix=1

@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.server.ServerWebExchange;
 
 import com.animal.farm.infrastructure.foundation.util.JsonUtil;
@@ -25,6 +24,9 @@ import com.animal.farm.infrastructure.foundation.web.Result;
 import reactor.core.publisher.Mono;
 
 /**
+ *
+ * 可能当做gateway的入口，这里可以做权限认证，流量控制啥的
+ *
  * @author zhouzhiyuan
  * @date 2022/10/26 17:17
  */
@@ -101,7 +103,7 @@ public class LocalRateLimiterGetWayFilterFactory extends
             //空key
             if (denyEmpty) {
               ServerWebExchangeUtils.setResponseStatus(exchange, emptyKeyStatus);
-              return writeResponse(exchange, MessageCode.ERROR_403_403);
+              return writeErrorResponse(exchange, MessageCode.ERROR_403_403);
             }
             return chain.filter(exchange);
           }
@@ -125,7 +127,7 @@ public class LocalRateLimiterGetWayFilterFactory extends
             //isAllowd=false时，返回429， too may reqests
             ServerWebExchangeUtils.setResponseStatus(exchange, config.getStatusCode());
 //            return exchange.getResponse().setComplete();
-            return writeResponse(exchange, MessageCode.ERROR_429);
+            return writeErrorResponse(exchange, MessageCode.ERROR_429);
 
           });
         });
@@ -140,7 +142,7 @@ public class LocalRateLimiterGetWayFilterFactory extends
    * @param exchange
    * @return
    */
-  public Mono<Void> writeResponse(ServerWebExchange exchange, MessageCode messageCode) {
+  public Mono<Void> writeErrorResponse(ServerWebExchange exchange, MessageCode messageCode) {
     ServerHttpResponse response = exchange.getResponse();
     // 设置响应的内容类型为JSON
     response.getHeaders().setContentType(MediaType.APPLICATION_JSON);

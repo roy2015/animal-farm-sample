@@ -14,6 +14,7 @@
     <module>spring-boot-sample</module>
     <module>spring-boot-sample-origin</module>
     <module>spring-gateway-sample</module>
+    <module>spring-gateway-simple</module>
   </modules>
 
   <properties>

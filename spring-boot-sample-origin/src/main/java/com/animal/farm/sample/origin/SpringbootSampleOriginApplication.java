@@ -15,13 +15,13 @@ import com.animal.farm.sample.origin.bean.TestVo;
 
 
 @SpringBootApplication
-public class SpringbootSampleApplication {
+public class SpringbootSampleOriginApplication {
 
 
     public static void main(String[] args) throws Exception {
 //        SpringApplication.run(com.animal.farm.sample.origin.SpringbootSampleApplication.class, args);
 
-        SpringApplication springApplication = new SpringApplication(SpringbootSampleApplication.class);
+        SpringApplication springApplication = new SpringApplication(SpringbootSampleOriginApplication.class);
         springApplication.addInitializers(new MyCustomContextInitializer());
         springApplication.run(args);
     }
