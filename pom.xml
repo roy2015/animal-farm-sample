@@ -15,6 +15,7 @@
     <module>spring-boot-sample-origin</module>
     <module>spring-gateway-sample</module>
     <module>spring-gateway-simple</module>
+    <module>spring-boot-kafka-sample</module>
   </modules>
 
   <properties>

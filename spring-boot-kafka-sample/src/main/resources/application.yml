@@ -1,0 +1,13 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: spring-boot-kafka-sample
+
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+  consumer:
+    group-id: my-consumer-group
+
+
