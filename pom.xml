@@ -16,6 +16,8 @@
     <module>spring-gateway-sample</module>
     <module>spring-gateway-simple</module>
     <module>spring-boot-kafka-sample</module>
+    <module>family-tree</module>
+    <module>spring-boot-family-tree</module>
   </modules>
 
   <properties>

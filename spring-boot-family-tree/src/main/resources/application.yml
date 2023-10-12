@@ -1,0 +1,43 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: spring-boot-family-tree
+  datasource:
+    # 数据库基本配置
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/family_tree?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:dm://172.26.30.156:30106/SYSDBA
+    #username: AIDBA
+    #password: AIDBA123456
+    #driver-class-name: dm.jdbc.driver.DmDriver
+    # 连接池配置
+    hikari:
+      # 最小空闲连接配置
+      minimum-idle: 10
+      # 空闲连接存活最大时间，默认600000（10分钟）
+      idle-timeout: 180000
+      # 连接池最大连接数，默认10
+      maximum-pool-size: 60
+      # 默认提交行为
+      auto-commit: true
+      # 设置连接超时时间，默认30s，即30000
+      connection-timeout: 60000
+      login-timeout: 5
+      max-lifetime: 60000
+      validation-timeout: 3000
+      read-only: false
+
+mybatis:
+  mapper-locations: classpath*:/mapping/**/*.xml
+  type-aliases-package: com.animal.farm.familytree.orm.po.**
+
+#logging:
+#  level:
+#    root: DEBUG
+##    com.example: DEBUG
+
